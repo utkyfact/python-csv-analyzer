@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSV Analyzer</title>
+    <link rel="stylesheet" href="/static/bootstrap.min.css" />
+    <link rel="shortcut icon" href="/static/flask.jpg" type="image/x-icon">
+  </head>
+  <body>
+    <div class="container m-5">
+      <h1 class="text-center">CSV Analyzer</h1>
+      <form action="/" method="POST" enctype="multipart/form-data" class="mb-4">
+        <div class="mb-3">
+          <input type="file" id="file" name="file" accept=".csv" class="form-control" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Analyze</button>
+      </form>
+
+      {% if graph %}
+        <div class="text-center">
+          <h2>Generated Graph:</h2>
+          <img src="{{ graph }}" class="img-fluid" alt="Graph" />
+        </div>
+      {% endif %}
+
+      {% if report %}
+        <div class="mt-4">
+          <h2>Analysis Report:</h2>
+          <div>{{ report|safe }}</div>
+          <a href="/download/report.html" class="btn btn-success">Download Full Report</a>
+        </div>
+      {% endif %}
+    </div>
+
+    <script src="/static/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
